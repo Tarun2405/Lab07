@@ -28,17 +28,24 @@ form.addEventListener('submit', function (event) {
 
     // Generate the mad lib story
     const madLibStory = `
-        Once upon a time, there was a ${adjective} ${noun} who loved to ${verb} ${adverb}.
-        One day, they encountered a group of ${pluralNoun} that changed their life forever.
-    `;
-
-    // Display the mad lib story in a new div element
-    const storyDiv = document.createElement('div');
-    storyDiv.innerHTML = `
         <h2>Your Mad Lib Story</h2>
-        <p>${madLibStory}</p>
+        <p>Once upon a time, there was a ${adjective} ${noun} who loved to ${verb} ${adverb}.<br>
+        One day, they encountered a group of ${pluralNoun} that changed their life forever.</p>
     `;
 
-    // Append the story to the body
-    document.body.appendChild(storyDiv);
+    // Create a new window or tab
+    const newWindow = window.open('', '_blank'); // Open a new tab or window
+
+    // Write the generated Mad Lib story into the new tab
+    newWindow.document.write(`
+        <html>
+            <head>
+                <title>Mad Lib Story</title>
+            </head>
+            <body>
+                ${madLibStory}
+            </body>
+        </html>
+    `);
+    newWindow.document.close(); // Ensure the new document is finished loading
 });
